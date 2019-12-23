@@ -4,23 +4,23 @@ const Schema = mongoose.Schema;
 
 const hotelSchema = new Schema(
   {
-    hotelName: { type: String, required: true },
-    hotelAddress: { type: String, required: true },
-    hotelRooms: { type: Array, required: true },
-    cancelationPolicy: { type: String, required: true },
-    hotelTax: { type: String, required: true },
+    hotelName: { type: String},
+    hotelAddress: { type: String },
+    hotelRooms: { type: Array },
+    cancelationPolicy: { type: String },
+    hotelTax: { type: String },
     hotelFee: { type: String },
-    description: { type: String, required: true },
+    description: { type: String},
     imgName: String,
     website: String,
     availability: {
-      type: Number,
+      type: String,
       enum: ["AVAILABLE", "ON REQUEST", "SOLD OUT"]
     },
     rate: {
       type: Number,
       enum: [0, 1, 2, 3, 4, 5],
-      default: 0
+      default: 5
     }
   },
   {
