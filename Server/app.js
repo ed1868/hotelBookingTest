@@ -1,47 +1,128 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const testHotels = require('./bin/seeds/hotelDefaults');
+
+require("dotenv").config();
+
+const port = 3000;
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+
+const express = require("express");
+const favicon = require("serve-favicon");
+
+const hbs = require("hbs");
+
+const mongoose = require("mongoose");
+
+const logger = require("morgan");
+const path = require("path");
+const ensureLogin = require("connect-ensure-login");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
+
+const testHotels = require("./bin/seeds/hotelDefaults");
+
+mongoose
+  .connect("mongodb://localhost/overseasTest", { useNewUrlParser: true })
+  .then(x => {
+    let dbName = "Overseas Test Environment";
+    console.log(
+      `Connected to Mongo! Database name: "${dbName}"  ; OX DATABASE SERVER IS LISTENING`
+    );
+    testHotels();
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
+
+const app_name = require("./package.json").name;
+const debug = require("debug")(
+  `${app_name}:${path.basename(__filename).split(".")[0]}`
+);
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// Middleware Setup
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-app.use('/', index);
+// Express View engine setup
 
-// catch 404 and forward to error handler
+//INSERT RANDOM USER TO DB
+
+app.use(
+  require("node-sass-middleware")({
+    src: path.join(__dirname, "public"),
+    dest: path.join(__dirname, "public"),
+    sourceMap: true
+  })
+);
+
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
+app.use(express.static(path.join(__dirname, "public")));
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+hbs.registerHelper("ifUndefined", (value, options) => {
+  if (arguments.length < 2) {
+    throw new Error("Handlebars Helper ifUndefined needs 1 parameter");
+  }
+  if (typeof value !== undefined) {
+    return options.inverse(this);
+  }
+  return options.fn(this);
+});
+
+hbs.registerHelper("tern", (value, options) => {
+  return !value ? "" : "checked";
+});
+
+hbs.registerHelper("ifitsMe", (value, value1, options) => {
+  return value == value1
+    ? new hbs.SafeString(
+        `<a href="/place/delete/opinionDelete/{{this._id}}/{{this.idPlace}}"><button type="button" id="deleteOpinion">Delete</button></a>`
+      )
+    : "";
+});
+
+// default value for title local
+app.locals.title = "OX WANNABE" ;
+
+app.locals.key = process.env.APIkey;
+
+// Enable authentication using session + passport
+app.use(
+  session({
+    secret: "metamorphosis",
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+app.use(flash());
+// require('./passport')(app);
+
+// THIS IS OUR ROUTES CONFIG ON APP.JS WE TELL OUR APP THAT IT IS ALLOWED TO USE THESE ROUTES
+
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.locals.user = req.user;
+  next();
 });
 
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+const index = require("./routes/index");
+
+app.use("/", index);
+
+// const authRoutes = require("./routes/auth");
+
+// app.use("/auth", authRoutes);
+
+// const hotelRoutes = require("./routes/hotels");
+
+// app.use("/hotels", hotelRoutes);
 
 module.exports = app;

@@ -43,4 +43,4 @@ testHotels = () => {
   });
 };
 
-module.exports = testHotel;
+module.exports = testHotels;
