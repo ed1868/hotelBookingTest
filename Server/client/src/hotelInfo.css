@@ -1,0 +1,14 @@
+.hotelInfo{
+margin: auto;
+}
+
+.hotelAveragePrice{
+margin: auto;
+}
+
+.hotelImages{
+  margin: auto;
+  height:200px;
+  width: 250px;
+  border-radius: 5px;
+}

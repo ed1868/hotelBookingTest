@@ -12,16 +12,18 @@ function App() {
         <h3>This test was made with these technologies</h3>
         <div className="row">
           <div className="col-md-3">
-            <p>Insert React picture</p>
+            <img className="tech" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"></img>
           </div>
           <div className="col-md-3">
-            <p>Insert Mongo Db picture</p>
+          
+          <img className="tech" src="http://www.kebwebdev.com/img/mongodb.png"></img>
+   
           </div>
           <div className="col-md-3">
-            <p>Insert Express picture</p>
+            <img id="express" src="https://cdn-web.studio3t.com/knowledge-base/wp-content/uploads/expressjs-logo.png?x78917"/>
           </div>
           <div className="col-md-3">
-            <p>Insert Node picture</p>
+            <img id="node" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png"/>
           </div>
         </div>
       </div>

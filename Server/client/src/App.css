@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-color: red;
+}
+
+.tech{
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+}
+
+#express{
+  margin-top: 40px;
+  padding-top: 40px;
+  width: 300px;
+  height: 100px;
+}
+
+#node{
+
+  width: 300px;
+  height: 200px;
+}
