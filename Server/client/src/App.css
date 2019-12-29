@@ -37,10 +37,11 @@
   }
 }
 
-body{
-  background-color: red;
-}
 
+#title{
+ color:#01D8FF;
+ font-size: 25px;
+}
 .tech{
   height: 200px;
   width: 200px;

@@ -8,7 +8,7 @@ export default class HotelList extends Component {
   render() {
     return (
       <div>
-        <h1>HOTEL LIST COMPONENT</h1>
+        <h1>Miami Hotels</h1>
         <div className="container">
           <Accordion defaultActiveKey="0">
             <Card>
@@ -18,30 +18,28 @@ export default class HotelList extends Component {
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <div className="row">
-                    <div className="col-md-4">
-                      Room Name
-                    </div>
-                    <div className="col-md-2">
-                      Availability
-                    </div>
-                    <div className="col-md-3">
-                      Price
-                    </div>
-                    <div className="col-md-3">
-                      Details
-                    </div>
+                    <div className="col-md-4">Room Name</div>
+                    <div className="col-md-2">Availability</div>
+                    <div className="col-md-3">Price</div>
+                    <div className="col-md-3">Details</div>
                   </div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
             <Card>
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                  Rooms/Availability
-                </Accordion.Toggle>
+            <HotelInfo />
               </Card.Header>
               <Accordion.Collapse eventKey="1">
-                <Card.Body>Hello! I'm the body</Card.Body>
+                <Card.Body>
+             
+                  <div className="row">
+                    <div className="col-md-4">Room Name</div>
+                    <div className="col-md-2">Availability</div>
+                    <div className="col-md-3">Price</div>
+                    <div className="col-md-3">Details</div>
+                  </div>
+                </Card.Body>
               </Accordion.Collapse>
             </Card>
             <Card>

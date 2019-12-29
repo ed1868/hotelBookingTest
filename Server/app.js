@@ -22,6 +22,8 @@ const flash = require("connect-flash");
 
 const testHotels = require("./bin/seeds/hotelDefaults");
 
+const cors       = require('cors');
+
 mongoose
   .connect("mongodb://localhost/overseasTest", { useNewUrlParser: true })
   .then(x => {
@@ -91,6 +93,8 @@ hbs.registerHelper("ifitsMe", (value, value1, options) => {
 // default value for title local
 app.locals.title = "OX WANNABE" ;
 
+
+
 app.locals.key = process.env.APIkey;
 
 // Enable authentication using session + passport
@@ -121,8 +125,8 @@ app.use("/", index);
 
 // app.use("/auth", authRoutes);
 
-// const hotelRoutes = require("./routes/hotels");
+const hotelRoutes = require("./routes/hotels");
 
-// app.use("/hotels", hotelRoutes);
+app.use("/hotels", hotelRoutes);
 
 module.exports = app;

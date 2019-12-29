@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className="jumbotron">
-        <h3>This test was made with these technologies</h3>
+        <strong id="title">This test was made with these technologies</strong>
         <div className="row">
           <div className="col-md-3">
             <img className="tech" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"></img>
