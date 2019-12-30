@@ -3,67 +3,120 @@ import { Accordion } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import HotelInfo from "./HotelInfo";
+import HotelRooms from "./HotelRooms";
 
 export default class HotelList extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.state = {
+      hotels: [
+        {
+          value: 0,
+          hotelName: "Marriot Grande Vista Dr",
+          hotelAddress: "Grande vista lake, Orlando Fl 33193",
+          hotelRooms: [
+            {
+              roomName: "Queen Bed",
+              price: "149.99",
+              details: "Fresh sheets, mini bar, Wifi, Flatscreen tv",
+              availability: "AVAILABLE",
+              conditions: "Meal Plan: NO ADDITIONAL MEALS",
+              cancelationPolicy:
+                "PENALTY OF 1 BOOKED NIGHT WHEN CANCELLING AFTER"
+            },
+
+            {
+              roomName: "Villa ping",
+              price: "1889.99",
+              details: "Fresh sheets, mini bar, Wifi, Flatscreen tv",
+              availability: "SOLD OUT",
+              conditions: "Meal Plan: NO ADDITIONAL MEALS",
+              cancelationPolicy:
+                "PENALTY OF 1 BOOKED NIGHT WHEN CANCELLING AFTER"
+            }
+          ],
+          hotelTax: "14",
+          hotelFee: "25",
+          description:
+            "Luxurious midtown hotel featuring 731 spacious rooms and suites with breathtaking views of Central Park and the Manhattan skyline.",
+          imgName: "a1",
+          url: "",
+          averagePrice: "290.00",
+          website: "https://www.parkernewyork.com/home/"
+        },
+        {
+          value: 1,
+          hotelName: "W Aspen",
+          hotelAddress: "Grande vista lake, Orlando Fl 33193",
+          hotelRooms: [
+            {
+              roomName: "Queen Bed",
+              price: "149.99",
+              details: "Fresh sheets, mini bar, Wifi, Flatscreen tv",
+              availability: "AVAILABLE",
+              conditions: "Meal Plan: NO ADDITIONAL MEALS",
+              cancelationPolicy:
+                "PENALTY OF 1 BOOKED NIGHT WHEN CANCELLING AFTER"
+            },
+            {
+              roomName: "Villa esoo",
+              price: "1889.99",
+              details: "Fresh sheets, mini bar, Wifi, Flatscreen tv",
+              availability: "SOLD OUT",
+              conditions: "Meal Plan: NO ADDITIONAL MEALS",
+              cancelationPolicy:
+                "PENALTY OF 1 BOOKED NIGHT WHEN CANCELLING AFTER"
+            }
+          ],
+          hotelTax: "14",
+          hotelFee: "25",
+          averagePrice: "540.00",
+          description:
+            "Luxurious midtown hotel featuring 731 spacious rooms and suites with breathtaking views of Central Park and the Manhattan skyline.",
+          imgName: "a1",
+          url: "",
+          website: "https://www.parkernewyork.com/home/"
+        }
+      ]
+    };
+  }
+  componentDidMount() {
+    console.log("ASERE", this.state);
+    // hotelsApi
+    //   .get()
+    //   .then(responseFromAPI => {
+    //     this.setState({ ...this.state, hotels: responseFromAPI.data.hotels });
+    //     console.log("Response from API is: ", responseFromAPI.data);
+    //   })
+    //   .catch(err => {
+    //     console.log("Error is: ", err);
+    //   });
+  }
+
   render() {
     return (
       <div>
         <h1>Miami Hotels</h1>
-        <div className="container">
-          <Accordion defaultActiveKey="0">
-            <Card>
-              <Card.Header>
-                <HotelInfo />
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <div className="row">
-                    <div className="col-md-4">Room Name</div>
-                    <div className="col-md-2">Availability</div>
-                    <div className="col-md-3">Price</div>
-                    <div className="col-md-3">Details</div>
-                  </div>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-            <HotelInfo />
-              </Card.Header>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>
-             
-                  <div className="row">
-                    <div className="col-md-4">Room Name</div>
-                    <div className="col-md-2">Availability</div>
-                    <div className="col-md-3">Price</div>
-                    <div className="col-md-3">Details</div>
-                  </div>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                  Rooms/Availability
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="2">
-                <Card.Body>Hello! I'm the body</Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                  Rooms/Availability
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="3">
-                <Card.Body>Hello! I'm another body</Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        </div>
+
+        {this.state.hotels !== null &&
+          this.state.hotels.map(hotels => {
+            console.log("EL HOTEL", hotels);
+            return (
+              <div className="container">
+                <Accordion defaultActiveKey={hotels.value}>
+                  <Card>
+                    <Card.Header>
+                      <HotelInfo hotels={hotels} />
+                    </Card.Header>
+                   
+                  </Card>
+                </Accordion>
+                <br></br>
+              </div>
+
+            );
+          })}
       </div>
     );
   }
