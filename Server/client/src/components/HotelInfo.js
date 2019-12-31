@@ -8,7 +8,7 @@ import HotelRooms from "./HotelRooms";
 import axios from "axios";
 
 const hotelsApi = axios.create({
-  baseURL: `http://localhost:4000/hotels`,
+  baseURL: `http://localhost:4000/`,
   headers: {
     "Content-Type": "application/json"
   },
