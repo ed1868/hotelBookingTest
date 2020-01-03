@@ -26,7 +26,7 @@ export default class HotelInfo extends Component {
     };
   }
   componentDidMount() {
-    console.log("HOTEL INFO", this.state);
+    console.log("HOTEL INFO----", this.props);
   }
 
   render() {
@@ -69,11 +69,10 @@ export default class HotelInfo extends Component {
                   {this.props.hotels.hotelRooms[0].availability}
                 </div>
                 <div className="col-md-3">
-                {this.props.hotels.hotelRooms[0].details}
-              
+                  {this.props.hotels.hotelRooms[0].details}
                 </div>
                 <div className="col-md-3">
-                {this.props.hotels.hotelRooms[0].price}
+                  {this.props.hotels.hotelRooms[0].price}
                 </div>
               </div>
               <br></br>
@@ -81,10 +80,23 @@ export default class HotelInfo extends Component {
                 <div className="col-md-4">
                   {this.props.hotels.hotelRooms[1].roomName}
                 </div>
-                <div className="col-md-2">{this.props.hotels.hotelRooms[1].availability}</div>
-                <div className="col-md-3">{this.props.hotels.hotelRooms[1].details}</div>
-                <div className="col-md-3">{this.props.hotels.hotelRooms[1].price}</div>
-          
+                <div className="col-md-2">
+                  {this.props.hotels.hotelRooms[1].availability}
+                </div>
+                <div className="col-md-3">
+                  <Accordion.Toggle
+                    onClick={this.getRooms}
+                    as={Button}
+                    variant="link"
+                    eventKey={this.props.hotels.hotels.value}
+                  >
+                  Details
+                  </Accordion.Toggle>
+                  {/* {this.props.hotels.hotelRooms[1].details} */}
+                </div>
+                <div className="col-md-3">
+                  {this.props.hotels.hotelRooms[1].price}
+                </div>
               </div>
             </Card.Body>
           </Accordion.Collapse>
