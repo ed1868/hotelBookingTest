@@ -88,7 +88,7 @@ export default class HotelInfo extends Component {
                     onClick={this.getRooms}
                     as={Button}
                     variant="link"
-                    eventKey={this.props.hotels.hotels.value}
+                    eventKey={this.props.hotels.hotelRooms[0].value}
                   >
                   Details
                   </Accordion.Toggle>
