@@ -12,7 +12,7 @@ export default class HotelList extends Component {
     this.state = {
       hotels: [
         {
-          value: 0,
+          value: 2,
           hotelName: "Marriot Grande Vista Dr",
           hotelAddress: "Grande vista lake, Orlando Fl 33193",
           hotelRooms: [
