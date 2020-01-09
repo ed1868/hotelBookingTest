@@ -13,6 +13,7 @@ export default class HotelList extends Component {
       hotels: [
         {
           value: 2,
+          valueTwo: 5,
           hotelName: "Marriot Grande Vista Dr",
           hotelAddress: "Grande vista lake, Orlando Fl 33193",
           hotelRooms: [
@@ -46,7 +47,8 @@ export default class HotelList extends Component {
           website: "https://www.parkernewyork.com/home/"
         },
         {
-          value: 1,
+          value: 3,
+          valueTwo:6,
           hotelName: "W Aspen",
           hotelAddress: "Grande vista lake, Orlando Fl 33193",
           hotelRooms: [
