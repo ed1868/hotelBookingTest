@@ -88,12 +88,12 @@ export default class HotelInfo extends Component {
                     onClick={this.getRooms}
                     as={Button}
                     variant="link"
-                    eventKey="3"
+                    eventKey="5"
                   >
                     Details
                   </Accordion.Toggle>
                   <div className="roomsInfo">
-                    <Accordion.Collapse eventKey="3">
+                    <Accordion.Collapse eventKey="5">
                       <Card.Body>
                         <h1>Hello</h1>
                       </Card.Body>

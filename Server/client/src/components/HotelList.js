@@ -106,7 +106,7 @@ export default class HotelList extends Component {
             console.log("EL HOTEL", hotels);
             return (
               <div className="container">
-                <Accordion defaultActiveKey={hotels.value}>
+                <Accordion defaultActiveKey={hotels.valueTwo}>
                   <Card>
                     <Card.Header>
                       <HotelInfo hotels={hotels} />
